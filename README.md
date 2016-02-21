@@ -1,0 +1,2 @@
+# Morse-Code-Library
+This library is written in C language. It uses data structures and algorithms from my previous project BST, Stack &amp; Queue and Linked List. The primary purpose of this project is to convert morse code from it's DOT DASH representation to ASCII Text and Binary representation, and vice versa. It is a very useful library. It is a byproduct of my Digital System Design project "Secret message tranmitter and receiver via Morse Code". Code is written for the performance in mind.
