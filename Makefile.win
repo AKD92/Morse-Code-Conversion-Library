@@ -1,0 +1,32 @@
+# Project: Morse Library
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = obj/MorseLib_Conversions.o obj/MorseLib_Utilities.o
+LINKOBJ  = obj/MorseLib_Conversions.o obj/MorseLib_Utilities.o
+LIBS     = -L"C:/Dev-Cpp/MinGW32/lib" -L"C:/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -L"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/lib" -lstackqueue -lbst
+INCS     = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src"
+CXXINCS  = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src"
+BIN      = lib/libmorse.a
+CXXFLAGS = $(CXXINCS) -ansi -std=c90 -Wall
+CFLAGS   = $(INCS) -ansi -std=c90 -Wall
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(LINKOBJ)
+	ar r $(BIN) $(LINKOBJ)
+	ranlib $(BIN)
+
+obj/MorseLib_Conversions.o: src/MorseLib_Conversions.c
+	$(CC) -c src/MorseLib_Conversions.c -o obj/MorseLib_Conversions.o $(CFLAGS)
+
+obj/MorseLib_Utilities.o: src/MorseLib_Utilities.c
+	$(CC) -c src/MorseLib_Utilities.c -o obj/MorseLib_Utilities.o $(CFLAGS)
