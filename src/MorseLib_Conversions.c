@@ -6,7 +6,7 @@
 	related to Morse code manipulation
 
 	Author:	Ashis Kumar Das
-	akd.bracu@gmail.com
+	Email:	akd.bracu@gmail.com
 	BRAC University
 */
 
@@ -23,7 +23,18 @@
 
 
 
+
+
+/*
+ *
+ * Function to compare to character by their ASCII value
+ * Returns valueOf(k1) - valueOf(k2)
+ *
+*/
 int cmp_character(const void *k1, const void *k2);
+
+
+
 
 
 
@@ -48,11 +59,9 @@ int cmp_character(const void *k1, const void *k2);
 */
 
 
-int morse_convAsciiToMorse(
-    BSTTree *checkMap,
-    char *AsciiInputString, int AsciiStringLen,
-    char *morseOutputString, int *morseStringLen
-) {
+int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int AsciiStringLen,
+    							char *morseOutputString, int *morseStringLen)
+{
 
 
 	int globalInputIndex, findResult;
@@ -131,11 +140,9 @@ int morse_convAsciiToMorse(
 */
 
 
-int morse_convMorseToAscii(
-    BSTTree *checkMap,
-    char *morseInputString, int morseStringLen,
-    char *AsciiOutputString, int *AsciiStringLen
-) {
+int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morseStringLen,
+    							char *AsciiOutputString, int *AsciiStringLen)
+{
 
 
 	register int letterIndex;
@@ -154,7 +161,11 @@ int morse_convMorseToAscii(
 		letterIndex = globalInputIndex;
 		currentMorseChar = morseInputString + letterIndex;
 
-		/*	Search for length of a single letter in morse code	*/
+
+		/* Search for length of a single letter in morse code	*/
+		/* It means, search for the next Separator character in the input stream */
+		/* When we get a separator, the characters counted thus far whould be */
+		/* a sequence of character in morse, which identifies a character in ASCII */
 		while ( letterIndex < morseStringLen
 		        && *currentMorseChar != MORSE_LETTER_SEPARATOR
 		        && *currentMorseChar != MORSE_WORD_SEPARATOR ) {
@@ -163,19 +174,32 @@ int morse_convMorseToAscii(
 			currentMorseChar = morseInputString + letterIndex;
 		}
 
+
+		/* We found a sequence of morse character, now get the corresponding ASCII char */
+		/* First we copy the sequence into a temporary character buffer */
 		memcpy((void*) tempBuffer, (const void*) morseInputString + globalInputIndex,
 		       letterIndex - globalInputIndex);
 		*(tempBuffer + letterIndex - globalInputIndex) = nulTerminator;
-
 		/*		printf("Buffer has : %s J is : %d\n", buffer, j);*/
 
+
+		/* Now use the Morse sequence in buffer to find the corresponding ASCII character */
+		/* If not found, the morse sequence is probably invalid, and we return abnormally */
 		findResult = bst_findElement(checkMap, (void*) tempBuffer, (void**) &asciiChar);
 		if (findResult == -1) return -1;
 
+
+		/* Copy the ASCII character we've found into the Output stream */
+		/* In addition to that, we also increment the OutputCounter variable by 1 */
 		memcpy((void*) AsciiOutputString + globalOutputCounter,
 		       (const void*) asciiChar, sizeof(char));
 		globalOutputCounter += sizeof(char);
 
+
+		/* Ahead of us, the next character(s) can be morse word separator (|) */
+		/* We have to skip next characters util we find a normal morse character */
+		/* But, word separator means a SPACE character ( ), and should be written */
+		/* a SPACE character in Output ASCII stream for each Word Separator we skip */
 		while (*currentMorseChar == MORSE_WORD_SEPARATOR) {
 
 			memcpy((void*) AsciiOutputString + globalOutputCounter,
@@ -186,6 +210,10 @@ int morse_convMorseToAscii(
 			currentMorseChar = morseInputString + letterIndex;
 		}
 
+		/* We assume that we've skipped all word separators in the Input Stream */
+		/* We are now ready to handle another valid Morse character sequence */
+		/* But, a Letter Separator can be present in Input stream this moment */
+		/* If this is the case, we simply skip 1 character for Letter Separator */
 		if (*currentMorseChar == MORSE_LETTER_SEPARATOR) {
 			letterIndex = letterIndex + 1;
 		}
@@ -223,11 +251,9 @@ int morse_convMorseToAscii(
 */
 
 
-int morse_convMorseToBinary(
-    BSTTree *checkMap,
-    char *morseInputSequence, int morseSequenceLen,
-    char *binaryOutputSequence, int *binarySequenceLen
-) {
+int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int morseSequenceLen,
+    							char *binaryOutputSequence, int *binarySequenceLen)
+{
 
 
 	int globalInputIndex, globalOutputCounter;
@@ -279,11 +305,9 @@ int morse_convMorseToBinary(
 */
 
 
-int morse_convBinaryToMorse(
-    BSTTree *checkMap,
-    char *binaryInputString, int binarySequenceLen,
-    char *morseOutputString, int *morseSequenceLen
-) {
+int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int binarySequenceLen,
+    							char *morseOutputString, int *morseSequenceLen)
+{
 
 	Queue binSymbolQueue;
 
