@@ -1,7 +1,7 @@
 
 
 
-/*	MorseCode_Utilities.c
+/*	MorseLib_Conversions.c
 	Implementation of core conversion algorithms
 	related to Morse code manipulation
 
