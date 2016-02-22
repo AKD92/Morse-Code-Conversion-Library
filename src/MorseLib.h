@@ -2,10 +2,11 @@
 
 
 
-/*	MorseCode.h
-	Morse Code functions header file
+/*	MorseLib.h
+	Morse Library functions header file
 
-	Author:	Ashis Kumar Das <akd.bracu@gmail.com>
+	Author:	Ashis Kumar Das
+	Email:	<akd.bracu@gmail.com>
 	BRAC University
 */
 
@@ -38,13 +39,28 @@
 
 
 
-void morse_createAsciiToMorseMapping(BSTTree *textToMorse);
 
-void morse_createMorseToAsciiMapping(BSTTree *morseToText);
 
-void morse_createMorseToBinaryMapping(BSTTree *morseToBinary);
+/*
+ * Below FOUR (4) functions build Dictionary data structure
+ * Which will be used for searching against a specified key
+ * In the conversion operations
+ *
+ * They all returns 0 for successful building, -1 for memory allocation failure
+ *
+ * Internally, these function will automatically initialize the BST passed in
+ * The parameter of these functions, to appropriate initialization values
+ *
+ * One must call bst_destroy() after being done working with the Dictionary (BST)
+*/
 
-void morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
+int morse_createAsciiToMorseMapping(BSTTree *textToMorse);
+
+int morse_createMorseToAsciiMapping(BSTTree *morseToText);
+
+int morse_createMorseToBinaryMapping(BSTTree *morseToBinary);
+
+int morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
 
 
 
@@ -74,11 +90,8 @@ void morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
 	Returns 0 for successfule convertion, -1 otherwisw
 */
 
-int morse_convBinaryToMorse(
-    BSTTree *checkMap,
-    char *binaryInputString, int binaryStringLen,
-    char *morseOutputString, int *morseStringLen
-);
+int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int binarySequenceLen,
+    							char *morseOutputString, int *morseSequenceLen);
 
 
 
@@ -105,11 +118,8 @@ int morse_convBinaryToMorse(
 */
 
 
-int morse_convMorseToBinary(
-    BSTTree *checkMap,
-    char *morseInputString, int morseStringLen,
-    char *binaryOutputString, int *binaryStringLen
-);
+int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int morseSequenceLen,
+    							char *binaryOutputSequence, int *binarySequenceLen);
 
 
 
@@ -138,11 +148,8 @@ int morse_convMorseToBinary(
 */
 
 
-int morse_convAsciiToMorse(
-    BSTTree *checkMap,
-    char *AsciiInputString, int AsciiStringLen,
-    char *morseOutputString, int *morseStringLen
-);
+int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int AsciiStringLen,
+    							char *morseOutputString, int *morseStringLen);
 
 
 
@@ -172,11 +179,8 @@ int morse_convAsciiToMorse(
 */
 
 
-int morse_convMorseToAscii(
-    BSTTree *checkMap,
-    char *morseInputString, int morseStringLen,
-    char *AsciiOutputString, int *AsciiStringLen
-);
+int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morseStringLen,
+    							char *AsciiOutputString, int *AsciiStringLen);
 
 
 
