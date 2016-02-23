@@ -64,7 +64,8 @@ int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int Ascii
 {
 
 
-	int globalInputIndex, findResult;
+	register int globalInputIndex;
+	int findResult;
 	register int globalOutputCounter;
 	char *currentAscii, *morseSingleString;
 	char morseLetterSeparator;
@@ -147,9 +148,9 @@ int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morse
 
 	register int letterIndex;
 	int findResult;
-	int globalInputIndex, globalOutputCounter;
+	register int globalInputIndex, globalOutputCounter;
 	char spaceChar, nulTerminator;
-	char *currentMorseChar, *asciiChar, tempBuffer[20];
+	char *currentMorseChar, *asciiChar, tempMorseBuffer[20];
 
 	globalInputIndex = 0;
 	globalOutputCounter = 0;
@@ -177,15 +178,14 @@ int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morse
 
 		/* We found a sequence of morse character, now get the corresponding ASCII char */
 		/* First we copy the sequence into a temporary character buffer */
-		memcpy((void*) tempBuffer, (const void*) morseInputString + globalInputIndex,
-		       letterIndex - globalInputIndex);
-		*(tempBuffer + letterIndex - globalInputIndex) = nulTerminator;
-		/*		printf("Buffer has : %s J is : %d\n", buffer, j);*/
+		memcpy((void*) tempMorseBuffer,
+				(const void*) morseInputString + globalInputIndex, letterIndex - globalInputIndex);
+		*(tempMorseBuffer + letterIndex - globalInputIndex) = nulTerminator;
 
 
 		/* Now use the Morse sequence in buffer to find the corresponding ASCII character */
 		/* If not found, the morse sequence is probably invalid, and we return abnormally */
-		findResult = bst_findElement(checkMap, (void*) tempBuffer, (void**) &asciiChar);
+		findResult = bst_findElement(checkMap, (void*) tempMorseBuffer, (void**) &asciiChar);
 		if (findResult == -1) return -1;
 
 
@@ -256,23 +256,24 @@ int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int mo
 {
 
 
-	int globalInputIndex, globalOutputCounter;
-	char *morseCharToken, *binaryTokenSequence;
+	register int globalInputIndex;
+	register int globalOutputCounter;
+	char *morseCharToken, *binaryTokenString;
 	int searchResult;
 
 	globalInputIndex = globalOutputCounter = 0;
-	binaryTokenSequence = 0;
+	binaryTokenString = 0;
 
 	while (globalInputIndex < morseSequenceLen) {
 
 		morseCharToken = morseInputSequence + globalInputIndex;
-		searchResult = bst_findElement(checkMap, (void*) morseCharToken, (void**) &binaryTokenSequence);
+		searchResult = bst_findElement(checkMap, (void*) morseCharToken, (void**) &binaryTokenString);
 
 		if (searchResult == -1) return -1;
 
-		strcpy(binaryOutputSequence + globalOutputCounter, (const char*) binaryTokenSequence);
+		strcpy(binaryOutputSequence + globalOutputCounter, (const char*) binaryTokenString);
 
-		globalOutputCounter += strlen(binaryTokenSequence);
+		globalOutputCounter += strlen(binaryTokenString);
 		globalInputIndex = globalInputIndex + 1;
 	}
 
@@ -309,10 +310,10 @@ int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int bin
     							char *morseOutputString, int *morseSequenceLen)
 {
 
-	Queue binSymbolQueue;
+	Queue binaryCharQueue;
 
-	int globalInputIndex;
-	int bufferCounter;
+	register int globalInputIndex;
+	register int bufferCounter;
 	int globalOutputCounter;
 
 	int searchResult;
@@ -320,54 +321,73 @@ int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int bin
 
 	char currentInputChar;
 	char binaryBuffer[20];
-	char *binaryHotDigit;
-	char *morseCharToken;
-
-	queue_init(&binSymbolQueue, 0);
+	char *binaryDigit, *morseCharToken;
 
 	globalInputIndex = 0;
 	bufferCounter = 0;
 	globalOutputCounter = 0;
-
 	returnResult = 0;
+	queue_init(&binaryCharQueue, 0);
 
 	while (globalInputIndex < binarySequenceLen) {
 
 		currentInputChar = *(binaryInputString + globalInputIndex);
 
-		queue_enqueue(&binSymbolQueue, (void*) (binaryInputString + globalInputIndex));
+		/* Enqueue the binary character at hand to the Queue for later processing */
+		queue_enqueue(&binaryCharQueue, (void*) (binaryInputString + globalInputIndex));
 		globalInputIndex = globalInputIndex + 1;
 
+		
+		/* If current input character at hand is a '0', we have got a full segment */
+		/* In this case, pop all the characters from the Queue and get the Morse character */
 		if (currentInputChar == '0') {
 
-			while (queue_size(&binSymbolQueue) > 0) {
+			/* Dequeue all binary symbols from the Queue and store them to buffer */
+			while (queue_size(&binaryCharQueue) > 0) {
 
-				queue_dequeue(&binSymbolQueue, (void**) &binaryHotDigit);
-				*(binaryBuffer + bufferCounter) = *binaryHotDigit;
-				bufferCounter++;
+				queue_dequeue(&binaryCharQueue, (void**) &binaryDigit);
+				*(binaryBuffer + bufferCounter) = *binaryDigit;
+				bufferCounter = bufferCounter + 1;
 			}
 
+			/* At the end of our buffer, place a NUL character to mark end of string */
 			*(binaryBuffer + bufferCounter) = '\0';
+			
+			/* Search for the string from buffer for its corresponding Morse character */
 			searchResult = bst_findElement(checkMap, (void*) binaryBuffer, (void**) &morseCharToken);
 			returnResult = searchResult;
 
+			/* If we cant find a Morse character for our binary string, its an error */
 			if (returnResult == -1) goto EXIT_FUNCTION;
 
+			/* Write the Morse character we have got to the Output stream */
 			*(morseOutputString + globalOutputCounter) = *morseCharToken;
 			globalOutputCounter++;
 
-			/*	printf("Chunk string in buffer: %s, Morse: %c\n", binaryBuffer, *morseCharToken);*/
+			/* printf("Chunk string in buffer: %s, Morse: %c\n", binaryBuffer, *morseCharToken);*/
 
+			/* Clear the buffer, it is enough to set the buffer length to 0 */
 			bufferCounter = 0;
-		}
-
+		} /* End of IF condition (We just processed a single Morse character) */
+		
+		/* Start again */
+	}
+	
+	
+	/* Check the size of our temporary binary symbol queue */
+	/* If elements still exist inside the queue, then it is considered an error */
+	if (queue_size(&binaryCharQueue) > 0) {
+		returnResult = -1;
+		goto EXIT_FUNCTION;
 	}
 
 	*morseSequenceLen = globalOutputCounter;
 
 EXIT_FUNCTION:
 
-	queue_destroy(&binSymbolQueue);
+	/* Clean up and return to the caller */
+	queue_destroy(&binaryCharQueue);
 	return returnResult;
 
 }
+

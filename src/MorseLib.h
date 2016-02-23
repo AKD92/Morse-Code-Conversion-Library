@@ -42,9 +42,9 @@
 
 
 /*
- * Below FOUR (4) functions build Dictionary data structure
- * Which will be used for searching against a specified key
- * In the conversion operations
+ * Below FOUR (4) functions build Dictionary data structures
+ * These data structures will be used for searching against a specified key
+ * While in the conversion operations
  *
  * They all returns 0 for successful building, -1 for memory allocation failure
  *
@@ -181,9 +181,6 @@ int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int Ascii
 
 int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morseStringLen,
     							char *AsciiOutputString, int *AsciiStringLen);
-
-
-
 
 
 
