@@ -12,13 +12,13 @@ Implemented operations so far:
 All these four operations return 0 for successful completion, and -1 for error. Their respective function prototypes and other information can be found in "MorseLib.h" header file. To incorporate this project into your own code, the header "MorseLib.h" must be included.
 
 For example, well knows SOS message can be converted to it's Morse Code format
-  * ASCII Text "SOS"  ->  Morse Code format "... --- ..." (DOT DOT DOT DASH DASH DASH DOT DOT DOT)
+  * ASCII Text "SOS"		->		Morse Code format "... --- ..." (DOT DOT DOT DASH DASH DASH DOT DOT DOT)
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
 This project has 3 dependecies:
-  * libbst.a            General purpose Dictionary implementation using Binary Search Tree
-  * libstackqueue.a     General purpose Stack and Queue data structure
-  * liblinkedlist.a     General purpose Linked List data structure
+  * libbst.a						General purpose Dictionary implementation using Binary Search Tree
+  * libstackqueue.a			General purpose Stack and Queue data structure
+  * liblinkedlist.a			General purpose Linked List data structure
 
 These dependency projects and their source codes were already hosted to my GitHub account.
 
