@@ -1,0 +1,34 @@
+/* THIS FILE WILL BE OVERWRITTEN BY DEV-C++ */
+/* DO NOT EDIT! */
+
+#include <windows.h> // include for version info constants
+
+
+//
+// TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
+//
+1 VERSIONINFO
+FILEVERSION 1,0,0,1
+PRODUCTVERSION 1,0,0,1
+FILETYPE VFT_STATIC_LIB
+{
+  BLOCK "StringFileInfo"
+  {
+    BLOCK "040904E4"
+    {
+      VALUE "CompanyName", "akd.bracu@gmail.com"
+      VALUE "FileVersion", "1.0.0.1"
+      VALUE "FileDescription", "Morse Code Manipulation Library"
+      VALUE "InternalName", ""
+      VALUE "LegalCopyright", "Ashis Kumar Das"
+      VALUE "LegalTrademarks", ""
+      VALUE "OriginalFilename", ""
+      VALUE "ProductName", "Morse Code Manipulation Library"
+      VALUE "ProductVersion", "1.0.0.1"
+    }
+  }
+  BLOCK "VarFileInfo"
+  {
+    VALUE "Translation", 0x0409, 1252
+  }
+}
