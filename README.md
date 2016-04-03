@@ -1,4 +1,4 @@
-# Morse-Code-Library
+# Morse Code Conversion Library (libmorse)
 This library is written in C language. It uses data structures and algorithms from my previous project BST, Stack &amp; Queue and Linked List. The primary purpose of this project is to convert morse code from it's DOT DASH representation to ASCII Text and Binary representation, and vice versa.
 
 It is a very useful library when working with Morse code. And I should not forget to mention that, it is a byproduct of my Digital System Design (DSD) project "Secret message tranmitter and receiver via Morse Code". On that project, we were a group of 4 team members to develop a microcontroller based solution by which Morse code can be sent digitally from one place to another wirelessly, and at the receiver end the person will see the actual ASCII text of the message converted from sender's morse code. Wireless transfer, Morse code input and conversion of Morse code to Binary and ASCII Text form is done by the microcontroller we've used. I had to program that microcontroller (an Arduino) for Morse conversion routines, and here this project is slightly modified version of that original work in order to bring broader range of capabilities and performance.
@@ -25,3 +25,6 @@ These dependency projects and their source codes were already hosted to my GitHu
 Code written for this project and for their dependency projects are ISO C90 compliant.
 
 All the projects listed above including this one is compiled using GCC 4.8 32 bit (MinGW port)
+
+### License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
