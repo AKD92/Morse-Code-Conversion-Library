@@ -26,30 +26,33 @@ To convert Ascii Text to Morse Code:
  #include &ltstring.h&gt
  #include &ltMorseLib.h&gt
  
+ int main(void)        /* Function prototype of main */
+ 
  int main(void) {
   int iRes1, iRes2;
-  BisTree textToMorse, morseToText;
+  BisTree textToMorse, morseToText;        /* Dictionary Data Structures needed for conversions */
   char *strAscii_A, *strMorse, *strAscii_B;
   int sizeAscii_A, sizeAscii_B, sizeMorse;
   
-  strAscii_A = "HELLO MORSE !!!";
+  strAscii_A = "HELLO MORSE !!!";           /* Input Ascii String */
   sizeAscii_A = strlen(strAscii_A);
-  strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));
-  strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));
+  strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));    /* Output Ascii String */
+  strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));  /* Output Morse Code String */
   
-  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);
-  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);
+  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);     /* Create mapping for Morse To Ascii conversion */
+  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);     /* Create mapping for Ascii To Morse conversion */
   
   if (iRes1 != 0 || iRes2 == 0 || strMorse == 0)
    return -1;
   
+  /* Conversion Begins Now */
   iRes1 = morse_convAsciiToMorse(&amptextToMorse, strAscii_A, sizeAscii_A, strMorse, &ampsizeMorse);
   iRes2 = morse_convMorseToAscii(&ampmorseToText, strMorse, sizeMorse, strAscii_B, &ampsizeAscii_B);
   
   if (iRes1 != 0 || iRes2 != 0) {
    printf("Error occures\n");
   }
-  else {
+  else {                                   /* Print converted strings */
    *(strMorse + sizeMorse) = '\0';
    *(strAscii_B + sizeAscii_B) = '\0';
    printf("Input Ascii Text [len %d]: %s\n", sizeAscii_A, strAscii_A);
@@ -57,11 +60,11 @@ To convert Ascii Text to Morse Code:
    printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   }
   
-  bst_destroy(&amptextToMorse);
+  bst_destroy(&amptextToMorse);         */ Destroy dictionaries or there will be memory leak*/
   bst_destroy(&ampmorseToText);
-  free((void *) strMorse);
+  free((void *) strMorse);              */ Destroy text buffers or there will be memory leak*/
   free((void *) strAscii_B);
-  return 0;
+  return 0;                             */ Return to OS */
  }</code></pre>
  
  <b>Output</b>
