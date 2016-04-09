@@ -1,9 +1,12 @@
-# Morse Code Conversion Library (libmorse)
-This library is written in C language. It uses data structures and algorithms from my previous project BST, Stack &amp; Queue and Linked List. The primary purpose of this project is to convert morse code from it's DOT DASH representation to ASCII Text and Binary representation, and vice versa.
+# Morse Library (libmorse)
+<b><i>C library for very fast conversion of Morse codes to other forms like Ascii Text</i></b>
 
+This library is written in C language. It uses data structures and algorithms from my previous projects <a href="https://github.com/AKD92/Tree-Based-Dictionary-ADT">Tree Based Dictionary ADT</a>, <a href="https://github.com/AKD92/Stack-Queue-ADT">Stack Queue ADT</a> and <a href="https://github.com/AKD92/Linked-List-ADT">Linked List ADT</a>. The primary purpose of this project is to convert morse code from it's DOT DASH representation to ASCII Text and Binary representation, and vice versa.
+
+### Background
 It is a very useful library when working with Morse code. And I should not forget to mention that, it is a byproduct of my Digital System Design (DSD) project "Secret message tranmitter and receiver via Morse Code". On that project, we were a group of 4 team members to develop a microcontroller based solution by which Morse code can be sent digitally from one place to another wirelessly, and at the receiver end the person will see the actual ASCII text of the message converted from sender's morse code. Wireless transfer, Morse code input and conversion of Morse code to Binary and ASCII Text form is done by the microcontroller we've used. I had to program that microcontroller (an Arduino) for Morse conversion routines, and here this project is slightly modified version of that original work in order to bring broader range of capabilities and performance.
 
-Implemented operations so far:
+### Implemented Algorithms so far:
   * Conversion from Morse Code to ASCII Text format.
   * Conversion from ASCII Text to Morse Code format.
   * Conversion from Morse Code to Binary representation.
@@ -15,11 +18,13 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * ASCII Text "SOS"		->		Morse Code format "... --- ..." (DOT DOT DOT DASH DASH DASH DOT DOT DOT)
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
+### Dependencies
 This project has 3 dependecies:
-  * libbst.a						General purpose Dictionary implementation using Binary Search Tree
-  * libstackqueue.a			General purpose Stack and Queue data structure
-  * liblinkedlist.a			General purpose Linked List data structure
+  * <a href="https://github.com/AKD92/Tree-Based-Dictionary-ADT">libbst.a</a>						General purpose Dictionary ADT implementation using Binary Search Tree (BST)
+  * <a href="https://github.com/AKD92/Stack-Queue-ADT">libstq.a</a>			General purpose Stack and Queue data structure
+  * <a href="https://github.com/AKD92/Linked-List-ADT">liblinkedlist.a</a>			General purpose Linked List data structure
 
+### Notes
 These dependency projects and their source codes were already hosted to my GitHub account.
 
 Code written for this project and for their dependency projects are ISO C90 compliant.
