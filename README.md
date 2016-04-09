@@ -18,6 +18,12 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * ASCII Text "SOS"		->		Morse Code format "... --- ..." (DOT DOT DOT DASH DASH DASH DOT DOT DOT)
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
+<code>include BST.h
+        int main() {
+         sol
+         return -1;
+        }</code>
+
 ### Dependencies
 This project has 3 dependecies:
   * <a href="https://github.com/AKD92/Tree-Based-Dictionary-ADT">libbst.a</a>						General purpose Dictionary ADT implementation using Binary Search Tree (BST)
