@@ -21,11 +21,11 @@ For example, well knows SOS message can be converted to it's Morse Code format
 ### Code Example
 To convert Ascii Text to Morse Code:
 <pre><code>
- #include <stdio.h>
- #include <stdlib.h>
- #include <string.h>
- #include <bst.h>
- #include <MorseLib.h>
+ #include &ltstdio.h&gt
+ #include &ltstdlib.h&gt
+ #include &ltstring.h&gt
+ #include &ltbst.h&gt
+ #include &ltMorseLib.h&gt
  
  int main(void) {
   int iRes;
@@ -37,31 +37,23 @@ To convert Ascii Text to Morse Code:
   sizeAscii = strlen(strAscii);
   sizeMorse = 8 * sizeAscii;
   strMorse = (char *) malloc(sizeMorse);
-  iRes = morse_createAsciiToMorseMapping(&textToMorse);
+  iRes = morse_createAsciiToMorseMapping(&amptextToMorse);
   
   if (iRes != 0 || strMorse == 0)
    return -1;
   
-  iRes = morse_convAsciiToMorse(&textToMorse, strAscii, sizeAscii, strMorse, &sizeMorse);
+  iRes = morse_convAsciiToMorse(&amptextToMorse, strAscii, sizeAscii, strMorse, &ampsizeMorse);
   
   if (iRes != 0) {
    printf("Error occures\n");
-   return -1;
   }
   else {
    printf("Input Ascii Text: %s\n", strAscii);
    printf("Output Morse Code" %s\n", strMorse);
-   return 0;
   }
+  bst_destroy(&amptextToMorse);
+  free((void *) strMorse);
  }</code></pre>
-  
-
-<code>Panel</code> constructor:
-<pre><code>function Panel(element, canClose, closeHandler) {
-  this.element = element;
-  this.canClose = canClose;
-  this.closeHandler = function () { if (closeHandler) closeHandler() };
-}</code></pre>
 
 ### Dependencies
 This project has 3 dependecies:
