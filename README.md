@@ -24,6 +24,13 @@ For example, well knows SOS message can be converted to it's Morse Code format
          return -1;
         }</code>
 
+<code>Panel</code> constructor:</p>
+<pre><code>function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() };
+}</code></pre>
+
 ### Dependencies
 This project has 3 dependecies:
   * <a href="https://github.com/AKD92/Tree-Based-Dictionary-ADT">libbst.a</a>						General purpose Dictionary ADT implementation using Binary Search Tree (BST)
