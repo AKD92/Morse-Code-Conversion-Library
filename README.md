@@ -56,8 +56,12 @@ To convert Ascii Text to Morse Code:
    printf("Converted Morse Code [len %d]: %s\n", sizeMorse, strMorse);
    printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   }
+  
   bst_destroy(&amptextToMorse);
+  bst_destroy(&ampmorseToText);
   free((void *) strMorse);
+  free((void *) strAscii_B);
+  return 0;
  }</code></pre>
  
  <b>Output</b>
