@@ -1,22 +1,19 @@
 
 
-
-
-/*	MorseLib.h
-	Morse Library functions header file
-
-	Author:	Ashis Kumar Das
-	Email:	<akd.bracu@gmail.com>
-	BRAC University
-*/
+/************************************************************************************
+	Program Interface of Morse Library Functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+	GitHub:             https://github.com/AKD92
+*************************************************************************************/
 
 
 
 
 
 
-#ifndef MORSECODE_H
-#define MORSECODE_H
+#ifndef MORSELIB_H
+#define MORSELIB_H
 
 
 
@@ -24,7 +21,7 @@
 
 
 
-#include <BSTTree.h>
+#include <bst.h>
 
 
 #define MORSE_DOT '.'
@@ -48,19 +45,19 @@
  *
  * They all returns 0 for successful building, -1 for memory allocation failure
  *
- * Internally, these function will automatically initialize the BST passed in
+ * Internally, these function will automatically initialize the BisTree passed in
  * The parameter of these functions, to appropriate initialization values
  *
- * One must call bst_destroy() after being done working with the Dictionary (BST)
+ * One must call bst_destroy() after being done working with the Dictionary (BisTree)
 */
 
-int morse_createAsciiToMorseMapping(BSTTree *textToMorse);
+int morse_createAsciiToMorseMapping(BisTree *textToMorse);
 
-int morse_createMorseToAsciiMapping(BSTTree *morseToText);
+int morse_createMorseToAsciiMapping(BisTree *morseToText);
 
-int morse_createMorseToBinaryMapping(BSTTree *morseToBinary);
+int morse_createMorseToBinaryMapping(BisTree *morseToBinary);
 
-int morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
+int morse_createBinaryToMorseMapping(BisTree *binaryToMorse);
 
 
 
@@ -75,11 +72,11 @@ int morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
 
 /*
 	Converts binary bit string into morse string
-	You can obtain a BSTTree Morse-To-Binary mapping through the function
-	morse_createMorseToBinaryMapping(BSTTree *morseToBinary)
+	You can obtain a BisTree Morse-To-Binary mapping through the function
+	morse_createMorseToBinaryMapping(BisTree *morseToBinary)
 	
 	in:
-		BSTTree *checkMap			- Mapping of Binary string to Morse characters
+		BisTree *checkMap			- Mapping of Binary string to Morse characters
 		char *bnaryInputString		- Binary string for input, eg. 1101001101101010
 		int binaryStringLen			- Length of binary string input
 	out:
@@ -90,7 +87,7 @@ int morse_createBinaryToMorseMapping(BSTTree *binaryToMorse);
 	Returns 0 for successfule convertion, -1 otherwisw
 */
 
-int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int binarySequenceLen,
+int morse_convBinaryToMorse (BisTree *checkMap, char *binaryInputString, int binarySequenceLen,
     							char *morseOutputString, int *morseSequenceLen);
 
 
@@ -102,11 +99,11 @@ int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int bin
 
 /*
 	Converts morse string into binary bit string
-	You can obtain a BSTTree Binary-to-Morse mapping through the function
-	morse_createBinaryToMorseMapping(BSTTree *binaryToMorse)
+	You can obtain a BisTree Binary-to-Morse mapping through the function
+	morse_createBinaryToMorseMapping(BisTree *binaryToMorse)
 	
 	in:
-		BSTTree *checkMap			- Mapping of Morse characters to Binary strings
+		BisTree *checkMap			- Mapping of Morse characters to Binary strings
 		char *morseInputString		- Morse string for input, eg. .../---/... (SOS)
 		int morseStringLen			- Length of morse string input
 	out:
@@ -118,7 +115,7 @@ int morse_convBinaryToMorse (BSTTree *checkMap, char *binaryInputString, int bin
 */
 
 
-int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int morseSequenceLen,
+int morse_convMorseToBinary (BisTree *checkMap, char *morseInputSequence, int morseSequenceLen,
     							char *binaryOutputSequence, int *binarySequenceLen);
 
 
@@ -136,7 +133,7 @@ int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int mo
 	at the end of the string
 
 	in:
-		BSTTree checkMap			- Mapping of (key: ASCII character, value: Morse string)
+		BisTree checkMap			- Mapping of (key: ASCII character, value: Morse string)
 		char *AsciiInputString		- ASCII text to convert
 		int AsciiStringLen			- Length of ASCII text input
 	out:
@@ -148,7 +145,7 @@ int morse_convMorseToBinary (BSTTree *checkMap, char *morseInputSequence, int mo
 */
 
 
-int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int AsciiStringLen,
+int morse_convAsciiToMorse (BisTree *checkMap, char *AsciiInputString, int AsciiStringLen,
     							char *morseOutputString, int *morseStringLen);
 
 
@@ -167,7 +164,7 @@ int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int Ascii
 	at the end of the string
 
 	in:
-		BSTTree checkMap			- Mapping of (key: Morse string, value: ASCII character)
+		BisTree checkMap			- Mapping of (key: Morse string, value: ASCII character)
 		char *morseInputString		- Morse characters to convert
 		int morseStringLen			- Length of Morse character input
 	out:
@@ -179,7 +176,7 @@ int morse_convAsciiToMorse (BSTTree *checkMap, char *AsciiInputString, int Ascii
 */
 
 
-int morse_convMorseToAscii (BSTTree *checkMap, char *morseInputString, int morseStringLen,
+int morse_convMorseToAscii (BisTree *checkMap, char *morseInputString, int morseStringLen,
     							char *AsciiOutputString, int *AsciiStringLen);
 
 
