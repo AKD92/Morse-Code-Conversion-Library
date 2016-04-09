@@ -1,6 +1,8 @@
 # Morse Library (libmorse)
 <b><i>C library for very fast conversion of Morse codes to other forms like Ascii Text</i></b>
 
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
 This library is written in C language. It uses data structures and algorithms from my previous projects <a href="https://github.com/AKD92/Tree-Based-Dictionary-ADT">Tree Based Dictionary ADT</a>, <a href="https://github.com/AKD92/Stack-Queue-ADT">Stack Queue ADT</a> and <a href="https://github.com/AKD92/Linked-List-ADT">Linked List ADT</a>. The primary purpose of this project is to convert morse code from it's DOT DASH representation to ASCII Text and Binary representation, and vice versa.
 
 ### Background
@@ -20,7 +22,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
 
 ### Code Example
 To convert Ascii Text to Morse Code:
-<pre><code> #include &ltbst.h&gt
+<pre class="prettyprint"> #include &ltbst.h&gt
  #include &ltstdio.h&gt
  #include &ltstdlib.h&gt
  #include &ltstring.h&gt
@@ -66,7 +68,7 @@ To convert Ascii Text to Morse Code:
   free((void *) strMorse);              */ Destroy text buffers or there will be memory leak*/
   free((void *) strAscii_B);
   return 0;                             */ Return to OS */
- }</code></pre>
+ }</pre>
  
  <b>Output</b>
  <pre><code> <b>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
