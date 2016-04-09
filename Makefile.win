@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = obj/MorseLib_Conversions.o obj/MorseLib_Utilities.o
-LINKOBJ  = obj/MorseLib_Conversions.o obj/MorseLib_Utilities.o
+OBJ      = obj/MorseLib_Conversion_Algorithms.o obj/MorseLib_Utility_Functions.o
+LINKOBJ  = obj/MorseLib_Conversion_Algorithms.o obj/MorseLib_Utility_Functions.o
 LIBS     = -L"C:/Dev-Cpp/MinGW32/lib" -L"C:/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -L"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/lib" -lstq -lbst
 INCS     = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src"
 CXXINCS  = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src"
@@ -25,8 +25,8 @@ $(BIN): $(LINKOBJ)
 	ar r $(BIN) $(LINKOBJ)
 	ranlib $(BIN)
 
-obj/MorseLib_Conversions.o: src/MorseLib_Conversions.c
-	$(CC) -c src/MorseLib_Conversions.c -o obj/MorseLib_Conversions.o $(CFLAGS)
+obj/MorseLib_Conversion_Algorithms.o: src/MorseLib_Conversion_Algorithms.c
+	$(CC) -c src/MorseLib_Conversion_Algorithms.c -o obj/MorseLib_Conversion_Algorithms.o $(CFLAGS)
 
-obj/MorseLib_Utilities.o: src/MorseLib_Utilities.c
-	$(CC) -c src/MorseLib_Utilities.c -o obj/MorseLib_Utilities.o $(CFLAGS)
+obj/MorseLib_Utility_Functions.o: src/MorseLib_Utility_Functions.c
+	$(CC) -c src/MorseLib_Utility_Functions.c -o obj/MorseLib_Utility_Functions.o $(CFLAGS)
