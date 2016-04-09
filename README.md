@@ -18,13 +18,13 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * ASCII Text "SOS"		->		Morse Code format "... --- ..." (DOT DOT DOT DASH DASH DASH DOT DOT DOT)
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
-<code>include BST.h
+<code class="codeblock">include BST.h
         int main() {
          sol
          return -1;
         }</code>
 
-<code>Panel</code> constructor:</p>
+<code>Panel</code> constructor:
 <pre><code>function Panel(element, canClose, closeHandler) {
   this.element = element;
   this.canClose = canClose;
