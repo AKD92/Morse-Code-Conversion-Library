@@ -41,15 +41,15 @@ For example, well knows SOS message can be converted to it's Morse Code format
   strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));    /* Output Ascii String */
   strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));  /* Output Morse Code String */
   
-  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);   /* Create mapping for Morse To Ascii conversion */
-  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);   /* Create mapping for Ascii To Morse conversion */
+  iRes1 = morse_createAsciiToMorseMapping(&textToMorse);   /* Create mapping for Morse To Ascii conversion */
+  iRes2 = morse_createMorseToAsciiMapping(&morseToText);   /* Create mapping for Ascii To Morse conversion */
   
   if (iRes1 != 0 || iRes2 == 0)
    return -1;
   
   /* Conversion Begins Now */
-  iRes1 = morse_convAsciiToMorse(&amptextToMorse, strAscii_A, sizeAscii_A, strMorse, &ampsizeMorse);
-  iRes2 = morse_convMorseToAscii(&ampmorseToText, strMorse, sizeMorse, strAscii_B, &ampsizeAscii_B);
+  iRes1 = morse_convAsciiToMorse(&textToMorse, strAscii_A, sizeAscii_A, strMorse, &sizeMorse);
+  iRes2 = morse_convMorseToAscii(&morseToText, strMorse, sizeMorse, strAscii_B, &sizeAscii_B);
   
   if (iRes1 != 0 || iRes2 != 0) {
    printf("Error occures\n");
@@ -62,8 +62,8 @@ For example, well knows SOS message can be converted to it's Morse Code format
    printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   }
   
-  bst_destroy(&amptextToMorse);         /* Destroy dictionaries or there will be memory leak */
-  bst_destroy(&ampmorseToText);
+  bst_destroy(&textToMorse);         /* Destroy dictionaries or there will be memory leak */
+  bst_destroy(&morseToText);
   free((void *) strMorse);              /* Destroy text buffers or there will be memory leak */
   free((void *) strAscii_B);
   return 0;                             /* Return to OS */
