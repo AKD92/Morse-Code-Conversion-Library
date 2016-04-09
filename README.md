@@ -22,6 +22,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
 
 ### Code Example
 To convert Ascii Text to Morse Code:
+```HTML
 <pre class="prettyprint"> #include &ltbst.h&gt
  #include &ltstdio.h&gt
  #include &ltstdlib.h&gt
@@ -69,6 +70,7 @@ To convert Ascii Text to Morse Code:
   free((void *) strAscii_B);
   return 0;                             */ Return to OS */
  }</pre>
+```
  
  <b>Output</b>
  <pre><code> <b>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
