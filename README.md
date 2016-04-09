@@ -19,13 +19,13 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
 ### Code Example
-To convert Ascii Text to Morse Code:
+**Converting Ascii Text to Morse Code, and then from converted Morse Code to Ascii Text**
 ```C
- #include &ltbst.h&gt
- #include &ltstdio.h&gt
- #include &ltstdlib.h&gt
- #include &ltstring.h&gt
- #include &ltMorseLib.h&gt
+ #include <bst.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <MorseLib.h>
  
  int main(void);        /* Function prototype of main */
  
@@ -41,8 +41,8 @@ To convert Ascii Text to Morse Code:
   strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));    /* Output Ascii String */
   strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));  /* Output Morse Code String */
   
-  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);     /* Create mapping for Morse To Ascii conversion */
-  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);     /* Create mapping for Ascii To Morse conversion */
+  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);   /* Create mapping for Morse To Ascii conversion */
+  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);   /* Create mapping for Ascii To Morse conversion */
   
   if (iRes1 != 0 || iRes2 == 0)
    return -1;
@@ -62,18 +62,18 @@ To convert Ascii Text to Morse Code:
    printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   }
   
-  bst_destroy(&amptextToMorse);         */ Destroy dictionaries or there will be memory leak*/
+  bst_destroy(&amptextToMorse);         /* Destroy dictionaries or there will be memory leak */
   bst_destroy(&ampmorseToText);
-  free((void *) strMorse);              */ Destroy text buffers or there will be memory leak*/
+  free((void *) strMorse);              /* Destroy text buffers or there will be memory leak */
   free((void *) strAscii_B);
-  return 0;                             */ Return to OS */
+  return 0;                             /* Return to OS */
  }
  ```
  
  <b>Output</b>
- <pre><code> <b>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
- <b>Converted Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</b>
- <b>Converted Ascii Text [len 15]: HELLO MORSE !!!</b></code></pre>
+ <pre><code> <b>>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
+ <b>>Converted Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</b>
+ <b>>Converted Ascii Text [len 15]: HELLO MORSE !!!</b></code></pre>
 
 ### Dependencies
 This project has 3 dependecies:
