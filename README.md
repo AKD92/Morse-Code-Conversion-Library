@@ -20,43 +20,50 @@ For example, well knows SOS message can be converted to it's Morse Code format
 
 ### Code Example
 To convert Ascii Text to Morse Code:
-<pre><code>#include &ltstdio.h&gt
+<pre><code> #include &ltbst.h&gt
+ #include &ltstdio.h&gt
  #include &ltstdlib.h&gt
  #include &ltstring.h&gt
- #include &ltbst.h&gt
  #include &ltMorseLib.h&gt
  
  int main(void) {
-  int iRes;
-  BisTree textToMorse;
-  char *strAscii, *strMorse;
-  int sizeAscii, sizeMorse;
+  int iRes1, iRes2;
+  BisTree textToMorse, morseToText;
+  char *strAscii_A, *strMorse, *strAscii_B;
+  int sizeAscii_A, sizeAscii_B, sizeMorse;
   
-  strAscii = "HELLO MORSE !!!";
-  sizeAscii = strlen(strAscii);
-  strMorse = (char *) malloc(8 * sizeAscii * sizeof(char));
-  iRes = morse_createAsciiToMorseMapping(&amptextToMorse);
+  strAscii_A = "HELLO MORSE !!!";
+  sizeAscii_A = strlen(strAscii_A);
+  strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));
+  strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));
   
-  if (iRes != 0 || strMorse == 0)
+  iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);
+  iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);
+  
+  if (iRes1 != 0 || iRes2 == 0 || strMorse == 0)
    return -1;
   
-  iRes = morse_convAsciiToMorse(&amptextToMorse, strAscii, sizeAscii, strMorse, &ampsizeMorse);
+  iRes1 = morse_convAsciiToMorse(&amptextToMorse, strAscii_A, sizeAscii_A, strMorse, &ampsizeMorse);
+  iRes2 = morse_convMorseToAscii(&ampmorseToText, strMorse, sizeMorse, strAscii_B, &ampsizeAscii_B);
   
-  if (iRes != 0) {
+  if (iRes1 != 0 || iRes2 != 0) {
    printf("Error occures\n");
   }
   else {
    *(strMorse + sizeMorse) = '\0';
-   printf("Input Ascii Text [len %d]: %s\n", strAscii, sizeAscii);
-   printf("Output Morse Code [len %d]: %s\n", strMorse, sizeMorse);
+   *(strAscii_B + sizeAscii_B) = '\0';
+   printf("Input Ascii Text [len %d]: %s\n", sizeAscii_A, strAscii_A);
+   printf("Converted Morse Code [len %d]: %s\n", sizeMorse, strMorse);
+   printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   }
   bst_destroy(&amptextToMorse);
   free((void *) strMorse);
  }</code></pre>
  
  <b>Output</b>
- <pre><code>Input Ascii Text [len 15]: HELLO MORSE !!!
- Output Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</code></pre>
+ <pre><code> <b>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
+ <b>Converted Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</b>
+ <b>Converted Ascii Text [len 15]: HELLO MORSE !!!</b></code></pre>
 
 ### Dependencies
 This project has 3 dependecies:
