@@ -20,8 +20,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
 
 ### Code Example
 To convert Ascii Text to Morse Code:
-<pre><code>
- #include &ltstdio.h&gt
+<pre><code>#include &ltstdio.h&gt
  #include &ltstdlib.h&gt
  #include &ltstring.h&gt
  #include &ltbst.h&gt
@@ -33,10 +32,9 @@ To convert Ascii Text to Morse Code:
   char *strAscii, *strMorse;
   int sizeAscii, sizeMorse;
   
-  strAscii = "Hello World !!!";
+  strAscii = "HELLO MORSE !!!";
   sizeAscii = strlen(strAscii);
-  sizeMorse = 8 * sizeAscii;
-  strMorse = (char *) malloc(sizeMorse);
+  strMorse = (char *) malloc(8 * sizeAscii * sizeof(char));
   iRes = morse_createAsciiToMorseMapping(&amptextToMorse);
   
   if (iRes != 0 || strMorse == 0)
@@ -48,12 +46,17 @@ To convert Ascii Text to Morse Code:
    printf("Error occures\n");
   }
   else {
-   printf("Input Ascii Text: %s\n", strAscii);
-   printf("Output Morse Code" %s\n", strMorse);
+   *(strMorse + sizeMorse) = '\0';
+   printf("Input Ascii Text [len %d]: %s\n", strAscii, sizeAscii);
+   printf("Output Morse Code [len %d]: %s\n", strMorse, sizeMorse);
   }
   bst_destroy(&amptextToMorse);
   free((void *) strMorse);
  }</code></pre>
+ 
+ <b>Output</b>
+ <pre><code>Input Ascii Text [len 15]: HELLO MORSE !!!
+ Output Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</code></pre>
 
 ### Dependencies
 This project has 3 dependecies:
