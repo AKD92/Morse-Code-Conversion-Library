@@ -26,9 +26,10 @@ To convert Ascii Text to Morse Code:
  #include &ltstring.h&gt
  #include &ltMorseLib.h&gt
  
- int main(void)        /* Function prototype of main */
+ int main(void);        /* Function prototype of main */
  
  int main(void) {
+ 
   int iRes1, iRes2;
   BisTree textToMorse, morseToText;        /* Dictionary Data Structures needed for conversions */
   char *strAscii_A, *strMorse, *strAscii_B;
@@ -42,7 +43,7 @@ To convert Ascii Text to Morse Code:
   iRes1 = morse_createAsciiToMorseMapping(&amptextToMorse);     /* Create mapping for Morse To Ascii conversion */
   iRes2 = morse_createMorseToAsciiMapping(&ampmorseToText);     /* Create mapping for Ascii To Morse conversion */
   
-  if (iRes1 != 0 || iRes2 == 0 || strMorse == 0)
+  if (iRes1 != 0 || iRes2 == 0)
    return -1;
   
   /* Conversion Begins Now */
