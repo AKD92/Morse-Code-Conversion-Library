@@ -19,7 +19,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
 ### Code Example
-#### Convert Ascii Text to Morse Code, and then from converted Morse Code to Ascii Text
+##### Convert Ascii Text to Morse Code, and then from converted Morse Code to Ascii Text
 ```C
  #include <bst.h>
  #include <stdio.h>
@@ -64,7 +64,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
  }
  ```
  
- #### Output
+##### Output
  <pre><code> <b>>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
  <b>>Converted Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</b>
  <b>>Converted Ascii Text [len 15]: HELLO MORSE !!!</b></code></pre>
