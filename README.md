@@ -19,7 +19,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
   * Reverse operation of the above is also available, from Morse Code to ASCII Text
 
 ### Code Example
-**Converting Ascii Text to Morse Code, and then from converted Morse Code to Ascii Text**
+#### Convert Ascii Text to Morse Code, and then from converted Morse Code to Ascii Text
 ```C
  #include <bst.h>
  #include <stdio.h>
@@ -31,14 +31,14 @@ For example, well knows SOS message can be converted to it's Morse Code format
  
  int main(void) {
  
-  BisTree textToMorse, morseToText;        /* Dictionary Data Structures needed for conversions */
+  BisTree textToMorse, morseToText;            /* Dictionary Data Structures needed for conversions */
   char *strAscii_A, *strMorse, *strAscii_B;
   int sizeAscii_A, sizeAscii_B, sizeMorse;
   
-  strAscii_A = "HELLO MORSE !!!";           /* Input Ascii String */
+  strAscii_A = "HELLO MORSE !!!";                                    /* Input Ascii String */
   sizeAscii_A = strlen(strAscii_A);
   strAscii_B = (char *) malloc((sizeAscii_A * sizeof(char)) + 1);    /* Output Ascii String */
-  strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));  /* Output Morse Code String */
+  strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));        /* Output Morse Code String */
   
   /* Create necessary mappings */
   morse_createAsciiToMorseMapping(&textToMorse);
@@ -48,7 +48,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
   morse_convAsciiToMorse(&textToMorse, strAscii_A, sizeAscii_A, strMorse, &sizeMorse);
   morse_convMorseToAscii(&morseToText, strMorse, sizeMorse, strAscii_B, &sizeAscii_B);
   
-                                   /* Print converted strings */
+  /* Print converted strings */
   *(strMorse + sizeMorse) = '\0';
   *(strAscii_B + sizeAscii_B) = '\0';
   printf("Input Ascii Text [len %d]: %s\n", sizeAscii_A, strAscii_A);
@@ -64,7 +64,7 @@ For example, well knows SOS message can be converted to it's Morse Code format
  }
  ```
  
- <b>Output</b>
+ #### Output
  <pre><code> <b>>Input Ascii Text [len 15]: HELLO MORSE !!!</b>
  <b>>Converted Morse Code [len 58]: ...././.-../.-../---|--/---/.-./.../.|..--.-/..--.-/..--.-</b>
  <b>>Converted Ascii Text [len 15]: HELLO MORSE !!!</b></code></pre>
@@ -76,11 +76,9 @@ This project has 3 dependecies:
   * <a href="https://github.com/AKD92/Linked-List-ADT">liblinkedlist.a</a>			General purpose Linked List data structure
 
 ### Notes
-These dependency projects and their source codes were already hosted to my GitHub account.
-
-Code written for this project and for their dependency projects are ISO C90 compliant.
-
-All the projects listed above including this one is compiled using GCC 4.8 32 bit (MinGW port)
+* These dependency projects and their source codes were already hosted to my GitHub account.
+* Code written for this project and for their dependency projects are ISO C90 compliant.
+* All the projects listed above including this one is compiled using GCC 4.8 32 bit (MinGW port)
 
 ### License
 <a rel="license" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="LGPLv3 License" style="border-width:0" src="http://www.gnu.org/graphics/lgplv3-147x51.png" /></a><br />This software is licensed under <a rel="license" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html">GNU Lesser General Public License, Version 3</a>.
