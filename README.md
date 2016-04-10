@@ -31,36 +31,30 @@ For example, well knows SOS message can be converted to it's Morse Code format
  
  int main(void) {
  
-  int iRes1, iRes2;
   BisTree textToMorse, morseToText;        /* Dictionary Data Structures needed for conversions */
   char *strAscii_A, *strMorse, *strAscii_B;
   int sizeAscii_A, sizeAscii_B, sizeMorse;
   
   strAscii_A = "HELLO MORSE !!!";           /* Input Ascii String */
   sizeAscii_A = strlen(strAscii_A);
-  strAscii_B = (char *) malloc(sizeAscii_A * sizeof(char));    /* Output Ascii String */
+  strAscii_B = (char *) malloc((sizeAscii_A * sizeof(char)) + 1);    /* Output Ascii String */
   strMorse = (char *) malloc(8 * sizeAscii_A * sizeof(char));  /* Output Morse Code String */
   
-  iRes1 = morse_createAsciiToMorseMapping(&textToMorse);   /* Create mapping for Morse To Ascii conversion */
-  iRes2 = morse_createMorseToAsciiMapping(&morseToText);   /* Create mapping for Ascii To Morse conversion */
+  /* Create necessary mappings */
+  morse_createAsciiToMorseMapping(&textToMorse);
+  morse_createMorseToAsciiMapping(&morseToText);
   
-  if (iRes1 != 0 || iRes2 == 0)
-   return -1;
+  /* Begin the conversion */
+  morse_convAsciiToMorse(&textToMorse, strAscii_A, sizeAscii_A, strMorse, &sizeMorse);
+  morse_convMorseToAscii(&morseToText, strMorse, sizeMorse, strAscii_B, &sizeAscii_B);
   
-  /* Conversion Begins Now */
-  iRes1 = morse_convAsciiToMorse(&textToMorse, strAscii_A, sizeAscii_A, strMorse, &sizeMorse);
-  iRes2 = morse_convMorseToAscii(&morseToText, strMorse, sizeMorse, strAscii_B, &sizeAscii_B);
+                                   /* Print converted strings */
+  *(strMorse + sizeMorse) = '\0';
+  *(strAscii_B + sizeAscii_B) = '\0';
+  printf("Input Ascii Text [len %d]: %s\n", sizeAscii_A, strAscii_A);
+  printf("Converted Morse Code [len %d]: %s\n", sizeMorse, strMorse);
+  printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
   
-  if (iRes1 != 0 || iRes2 != 0) {
-   printf("Error occures\n");
-  }
-  else {                                   /* Print converted strings */
-   *(strMorse + sizeMorse) = '\0';
-   *(strAscii_B + sizeAscii_B) = '\0';
-   printf("Input Ascii Text [len %d]: %s\n", sizeAscii_A, strAscii_A);
-   printf("Converted Morse Code [len %d]: %s\n", sizeMorse, strMorse);
-   printf("Converted Ascii Text [len %d]: %s\n", sizeAscii_B, strAscii_B);
-  }
   
   bst_destroy(&textToMorse);         /* Destroy dictionaries or there will be memory leak */
   bst_destroy(&morseToText);
